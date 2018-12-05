@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="集合,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java集合学习笔记目录   集合类的由来 集合的特点 集合框架图 Collection的共性方法 迭代器的使用 有序重复同步问题 List 特有常见方法 list取出元素方法 ListIterator介绍   LinkedList ArrayList 哈希表确定元素是否相同 集合框架Collection练习 定义功能去除ArrayList中的重复元素   TreeSet中的比较 方法一 实现 C">
+<meta name="keywords" content="集合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 集合学习">
+<meta property="og:url" content="http://yoursite.com/2018/11/29/Java-集合学习/index.html">
+<meta property="og:site_name" content="李荣鹏的博客">
+<meta property="og:description" content="Java集合学习笔记目录   集合类的由来 集合的特点 集合框架图 Collection的共性方法 迭代器的使用 有序重复同步问题 List 特有常见方法 list取出元素方法 ListIterator介绍   LinkedList ArrayList 哈希表确定元素是否相同 集合框架Collection练习 定义功能去除ArrayList中的重复元素   TreeSet中的比较 方法一 实现 C">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/04.png">
+<meta property="og:image" content="http://yoursite.com/images/08.png">
+<meta property="og:image" content="http://yoursite.com/images/09.png">
+<meta property="og:image" content="http://yoursite.com/images/10.png">
+<meta property="og:image" content="http://yoursite.com/images/11.png">
+<meta property="og:image" content="http://yoursite.com/images/05.png">
+<meta property="og:image" content="http://yoursite.com/images/06.png">
+<meta property="og:image" content="http://yoursite.com/images/07.png">
+<meta property="og:updated_time" content="2018-12-04T06:18:09.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 集合学习">
+<meta name="twitter:description" content="Java集合学习笔记目录   集合类的由来 集合的特点 集合框架图 Collection的共性方法 迭代器的使用 有序重复同步问题 List 特有常见方法 list取出元素方法 ListIterator介绍   LinkedList ArrayList 哈希表确定元素是否相同 集合框架Collection练习 定义功能去除ArrayList中的重复元素   TreeSet中的比较 方法一 实现 C">
+<meta name="twitter:image" content="http://yoursite.com/images/04.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/29/Java-集合学习/">
+
+
+
+
+
+  <title>Java 集合学习 | 李荣鹏的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李荣鹏的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">因为有了危机感，所以义无反顾</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/29/Java-集合学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李荣鹏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李荣鹏的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 集合学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T11:15:57+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-集合/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 集合</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Java集合学习笔记</strong><br>目录</p>
+<!-- toc -->
+<ul>
+<li><a href="#集合类的由来">集合类的由来</a></li>
+<li><a href="#集合的特点">集合的特点</a></li>
+<li><a href="#集合框架图">集合框架图</a></li>
+<li><a href="#collection的共性方法">Collection的共性方法</a></li>
+<li><a href="#迭代器的使用">迭代器的使用</a></li>
+<li><a href="#有序重复同步问题">有序重复同步问题</a></li>
+<li><a href="#list">List</a><ul>
+<li><a href="#特有常见方法">特有常见方法</a></li>
+<li><a href="#list取出元素方法">list取出元素方法</a></li>
+<li><a href="#listiterator介绍">ListIterator介绍</a></li>
+</ul>
+</li>
+<li><a href="#linkedlist">LinkedList</a></li>
+<li><a href="#arraylist">ArrayList</a></li>
+<li><a href="#哈希表确定元素是否相同">哈希表确定元素是否相同</a></li>
+<li><a href="#集合框架collection练习">集合框架Collection练习</a><ul>
+<li><a href="#定义功能去除arraylist中的重复元素">定义功能去除ArrayList中的重复元素</a></li>
+</ul>
+</li>
+<li><a href="#treeset中的比较">TreeSet中的比较</a><ul>
+<li><a href="#方法一-实现-comparable-接口">方法一 实现 Comparable 接口</a></li>
+<li><a href="#方法二-构造一个比较器-comparator">方法二 构造一个比较器 Comparator</a></li>
+<li><a href="#treeset集合练习-字符串长度排序">TreeSet集合练习-字符串长度排序</a></li>
+</ul>
+</li>
+<li><a href="#mapkv集合">Map&lt;K,V&gt;集合</a><ul>
+<li><a href="#mapkv-遍历">Map&lt;K,V&gt; 遍历</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="集合类的由来">集合类的由来</span></h1><p>对象封装特有数据，对象多了，需要存储，如果对象的个数不确定就用集合容器进行存储。</p>
+<h1><span id="集合的特点">集合的特点</span></h1><p>用于存储对象的容器。<br>集合的长度是可以改变的。<br>集合中不可以存储基本数据类型值。</p>
+<h1><span id="集合框架图">集合框架图</span></h1><p><img src="/images/04.png" alt="集合框架图"></p>
+<h1><span id="collection的共性方法">Collection的共性方法</span></h1><p><img src="/images/08.png" alt="Collection的共性方法"></p>
+<h1><span id="迭代器的使用">迭代器的使用</span></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//使用Collection 中的iterator()方法</span></span><br><span class="line">    Collection coll = <span class="keyword">new</span> ArrayList();</span><br><span class="line">    <span class="comment">//Iterator it = coll.iterator();</span></span><br><span class="line">    <span class="comment">//while(it.hasNext()&#123;System.out.println(it.next());&#125;//it浪费内存，改成for</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(Iterator it = coll.iterator(); it.hasNext(); )&#123;</span><br><span class="line">        System.out.println(it.next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="有序重复同步问题">有序重复同步问题</span></h1><pre><code>Collection:
+        |--List: 存取有序 可重复 有索引
+            |--Vector: 可增长的对象数组  同步 效率低 增长100%空间浪费 查询增删都慢
+            |--ArrayList: 可增长的对象数组  不同步 效率高，替代了Vector。增长50%空间浪费 查询快
+            |--LinkedList: 内部是链表数据结构 不同步 增删快
+        |--set: 不可重复  不同步  set接口中的方法和Collection一致 
+            |--HashSet 内部数据结构是哈希表  无序 不同步
+                |--LinkedHashSet  存取有序
+            |--TreeSet  有字典排序
+Map&lt;K,V&gt;  无序
+        |--Hashtable：内部结构 哈希表  同步 不支持空键空值
+            |--Properties：用来存储键值对型的配置文件的信息。可以IO技术相结合。
+        |--HashMap：内部结构 哈希表  不同步 支持空键空值
+            |--LinkedHashMap 存取有序
+        |--TreeMap：内部结构二叉树 不同步
+</code></pre><h1><span id="list">List</span></h1><h2><span id="特有常见方法">特有常见方法</span></h2><p><img src="/images/09.png" alt="List特有常见方法"></p>
+<h2><span id="list取出元素方法">list取出元素方法</span></h2><ul>
+<li>通过迭代器取出</li>
+<li>使用get()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; list.size(); x++)&#123;</span><br><span class="line">    System.out.println(list.get(x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="listiterator介绍">ListIterator介绍</span></h2><p>ListIterator是Iterator的子接口，因为iterator接口中只有，hasNext() next() remove()三个方法，所以并不能完成在集合操作中，继续操作iterator，否则会出现ConcurrentModificationException异常。<br>使用方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以实现在迭代中完成对元素的增删改查，只有list有这个</span></span><br><span class="line">ListIterator it = list.listIterator();<span class="comment">//获取列表迭代器对象</span></span><br><span class="line">white(it.hasNext())&#123;</span><br><span class="line">    Object obj = it.next();</span><br><span class="line">    <span class="keyword">if</span>(obj.equals(<span class="string">"abc2"</span>))&#123;</span><br><span class="line">        it.add(<span class="string">"abc9"</span>);</span><br><span class="line">        <span class="comment">//it.set("abc9");</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"list:"</span> + list);</span><br><span class="line"><span class="comment">/**************************</span></span><br><span class="line"><span class="comment">结果：</span></span><br><span class="line"><span class="comment">list：[abc1,abc2,abc9,abc3]</span></span><br><span class="line"><span class="comment">**************************/</span></span><br></pre></td></tr></table></figure></p>
+<p>附录ListIterator主要方法<br><img src="/images/10.png" alt="List特有常见方法"></p>
+<h1><span id="linkedlist">LinkedList</span></h1><p><img src="/images/11.png" alt="List特有常见方法"></p>
+<h1><span id="arraylist">ArrayList</span></h1><p>引用类型的集合<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ArrayList a1 = <span class="keyword">new</span> ArrayList();</span><br><span class="line">a1.add(<span class="keyword">new</span> Person(<span class="string">"lisi1"</span>,<span class="number">21</span>));</span><br><span class="line">a1.add(<span class="keyword">new</span> Person(<span class="string">"lisi2"</span>,<span class="number">22</span>));</span><br><span class="line"></span><br><span class="line">Iterator it = a1.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">    Person p = (Person) it.next();</span><br><span class="line">    System.out.println(p.getName()+<span class="string">"--"</span>+p.getAge());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/************</span></span><br><span class="line"><span class="comment">结果：</span></span><br><span class="line"><span class="comment">lisi1--21</span></span><br><span class="line"><span class="comment">lisi2--22</span></span><br><span class="line"><span class="comment">*************/</span></span><br></pre></td></tr></table></figure></p>
+<h1><span id="哈希表确定元素是否相同">哈希表确定元素是否相同</span></h1><p>1.判断的是两个元素的哈希值是否相同。如果如果相同，再判断两个对象的内容是否相同。<br>2.判断哈希值相同，其实就是对象的hashCode方法。判断内容用的是equals<br>注意：如果哈希值不同，是不需要判断内容的。</p>
+<h1><span id="集合框架collection练习">集合框架Collection练习</span></h1><h2><span id="定义功能去除arraylist中的重复元素">定义功能去除ArrayList中的重复元素</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList a1 = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        a1.add(<span class="string">"acb1"</span>);</span><br><span class="line">        a1.add(<span class="string">"acb2"</span>);</span><br><span class="line">        a1.add(<span class="string">"acb1"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(a1);</span><br><span class="line">        a1 = getSingleElement(a1);</span><br><span class="line">        System.out.println(a1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> ArrayList <span class="title">getSingleElement</span><span class="params">(ArrayList a1)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.定义一个临时容器</span></span><br><span class="line">        ArrayList temp = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.迭代a1集合</span></span><br><span class="line">        Iterator it = a1.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">            Object obj = it.next();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//3.判断被迭代到的元素是否在临时容器中</span></span><br><span class="line">            <span class="keyword">if</span> (!temp.contains(obj)) &#123;</span><br><span class="line">                temp.add(obj);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/**********</span></span><br><span class="line"><span class="comment">结果:</span></span><br><span class="line"><span class="comment">[acb1, acb2, acb1]</span></span><br><span class="line"><span class="comment">[acb1, acb2]</span></span><br><span class="line"><span class="comment">*********/</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>： 对于ArrayList来说，去重复自定义对象时，自定义的对象需要和 equals 方法，因为 contains 方法依据的还是equals方法</p>
+<h1><span id="treeset中的比较">TreeSet中的比较</span></h1><p>TreeSet判断元素唯一的方法就是根据返回值是否是0，是0，就是元素相同，不存。</p>
+<h2><span id="方法一-实现-comparable-接口">方法一 实现 Comparable 接口</span></h2><p>此接口强行对实现它的每个类的对象进行整体排序。这种排序称为类的自然排序,类的compareTo方法称为他的自然比较法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Person implements Comparable&lt;Person&gt;&#123;</span><br><span class="line">...</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person p)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*以Person对象的年龄从小到大的顺序排*/</span></span><br><span class="line">        <span class="comment">/*年龄相同，以字典顺序比较姓名*/</span></span><br><span class="line">        <span class="keyword">int</span> temp = <span class="keyword">this</span>.age-p.age;</span><br><span class="line">        <span class="keyword">return</span> temp == <span class="number">0</span> ? <span class="keyword">this</span>.name.compareTo(p.name) : temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="方法二-构造一个比较器-comparator">方法二 构造一个比较器 Comparator</span></h2><p>如果不要按照对象中具备的自然顺序进行排序。如果对象中不具备自然顺序。<br>比较器 Comparator 强行对某个对象collection进行整体排序。<br>方法：<br>int compare(T o1,T o2)<br>boolean equals(Object obj)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorByName</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person p1, Person p2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> temp = p1.getName().compareTo(p2.getName());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> temp == <span class="number">0</span> ? p1.getAge() - p2.getAge() : temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TreeSet ts = <span class="keyword">new</span> TreeSet(<span class="keyword">new</span> ComparatorByName());</span><br></pre></td></tr></table></figure></p>
+<h2><span id="treeset集合练习-字符串长度排序">TreeSet集合练习-字符串长度排序</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorByLength</span> <span class="keyword">implements</span> <span class="title">Comparator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object o1, Object o2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String s1 = (String) o1;</span><br><span class="line">        String s2 = (String) o2;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> temp = s1.length() - s2.length();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> temp == <span class="number">0</span> ? s1.compareTo(s2) : temp;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="mapltkvgt集合">Map&lt;K,V&gt;集合</span></h1><p>Map与Collection区别？<br>Map一次添加一对数据，Collection一次添加一个元素<br>Map的Key不能重复，Value可以重复<br>常见方法：<br><img src="/images/05.png" alt="Map 常见方法"></p>
+<h2><span id="mapltkvgt-遍历">Map&lt;K,V&gt; 遍历</span></h2><p>方法一：KeySet（） 将键作为对象存储在set中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        HashMap&lt;Integer, String&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, String&gt;();</span><br><span class="line">        method(map);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Map&lt;Integer,String&gt; map)</span> </span>&#123;</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="string">"abc1"</span>);</span><br><span class="line">        map.put(<span class="number">2</span>, <span class="string">"abc2"</span>);</span><br><span class="line">        map.put(<span class="number">5</span>, <span class="string">"abc5"</span>);</span><br><span class="line">        map.put(<span class="number">7</span>, <span class="string">"abc7"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Set&lt;Integer&gt; keySet = map.keySet();</span><br><span class="line">        Iterator&lt;Integer&gt; it = keySet.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">            Integer key = it.next();</span><br><span class="line">            String value = map.get(key);</span><br><span class="line">            System.out.println(key+<span class="string">":::"</span>+value);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***********</span></span><br><span class="line"><span class="comment">1:::abc1</span></span><br><span class="line"><span class="comment">2:::abc2</span></span><br><span class="line"><span class="comment">5:::abc5</span></span><br><span class="line"><span class="comment">7:::abc7</span></span><br><span class="line"><span class="comment">***********/</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/06.png" alt=""></p>
+<p>方法二：entrySet() 该方法将键和值的映射关系作为对象，存储到了Set集合中，而这个映射关系类型就是Map.Entry类型<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        HashMap&lt;Integer, String&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, String&gt;();</span><br><span class="line">        method(map);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Map&lt;Integer,String&gt; map)</span> </span>&#123;</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="string">"abc1"</span>);</span><br><span class="line">        map.put(<span class="number">2</span>, <span class="string">"abc2"</span>);</span><br><span class="line">        map.put(<span class="number">5</span>, <span class="string">"abc5"</span>);</span><br><span class="line">        map.put(<span class="number">7</span>, <span class="string">"abc7"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Set&lt;Map.Entry&lt;Integer, String&gt;&gt; entrySet = map.entrySet();</span><br><span class="line">        Iterator&lt;Map.Entry&lt;Integer, String&gt;&gt; it = entrySet.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">            Map.Entry&lt;Integer, String&gt; next = it.next();</span><br><span class="line">            Integer key = next.getKey();</span><br><span class="line">            String value = next.getValue();</span><br><span class="line">            System.out.println(key+<span class="string">":::"</span>+value);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***********</span></span><br><span class="line"><span class="comment">1:::abc1</span></span><br><span class="line"><span class="comment">2:::abc2</span></span><br><span class="line"><span class="comment">5:::abc5</span></span><br><span class="line"><span class="comment">7:::abc7</span></span><br><span class="line"><span class="comment">***********/</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/07.png" alt=""></p>
+<p><strong>*集合使用选择技巧</strong></p>
+<pre><code>集合需要唯一吗？
+需要：Set
+    需要制定顺序吗？
+        需要：TreeSet
+        不需要：HashSet
+        想要一个和存储一致顺序：LinkedHashSet
+不需要：List
+    需要频繁增删吗？
+        需要：LinkedList
+        不需要：ArrayList
+如何记录每一个容器的结构和所属体系呢？
+看名字！
+List
+    |--ArrayList
+    |--LinkedList
+Set
+    |--HashSet
+    |--TreeSet
+看到array 就要想到数组，就要想到查询快，有角标。
+看到link 就要想到链表，就要想到增删快，就要想到 add get remove first last的方法
+看到hash 就要想到哈希表，就要想到唯一性，就要想到元素需要覆盖hashcode方法和equals方法。
+看到tree 就要想到二叉树，就要想到要排序，就要想到两个接口`Comparable` `Comparator`
+而且通常这些常见的集合容器是不同步的。 
+</code></pre><p><strong>**泛型</strong><br>1.jdk1.5后出现的安全机制。<br>2.将运行时期的问题ClassCastException 转到了编译时期。<br>3.避免了强制转换的麻烦。<br>&lt;&gt;:什么时候用？当操作的引用数据类型不确定的时候，就用&lt;&gt;.<br>4.泛型技术是给编译器使用的技术，用于编译时期，确保了类型的安全。运行时，会去泛型，生成的class文件中是不带泛型的，这个称为泛型的擦除。为什么擦除？为了兼容运行的类加载器。<br>5.泛型的补偿：在运行时，通过获取元素的类型进行转换动作。不必强制转换类型。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/集合/" rel="tag"># 集合</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/29/Spring-事物的传播行为/" rel="next" title="Spring 事物的传播行为">
+                <i class="fa fa-chevron-left"></i> Spring 事物的传播行为
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/04/Java-多线程/" rel="prev" title="Java 多线程">
+                Java 多线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="李荣鹏">
+            
+              <p class="site-author-name" itemprop="name">李荣鹏</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rongpeng-li" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:rongpeng0228@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/uploads/weixin.jpg" target="_blank" title="微信">
+                      
+                        <i class="fa fa-fw fa-weixin"></i>微信</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李荣鹏</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
