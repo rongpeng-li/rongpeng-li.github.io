@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java 面向对象的五大原则,">
+  <meta name="keywords" content="Spring Data Elasticsearch (一),">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="目录   面向对象五大原则： 单一职责原则（Single-Resposibility Principle） 开放封闭原则（Open-Closed principle） 里氏替换原则（Liskov-Substituion Principle） 依赖倒置原则（Dependecy-Inversion Principle） ISP 接口隔离原则(Interface-Segregation Principl">
-<meta name="keywords" content="Java 面向对象的五大原则">
+<meta name="description" content="目录   Elasticsearch 基本术语 文档（Document）、索引（Index）、类型（Type）文档三要素 文档（Document） 索引（Index） 类型（Type）   集群（Cluster）、节点（Node）、分片（Shard）分布式三要素 集群（Cluster） 节点（Node） 分片（Shard）     Elasticsearch 工作原理 文档存储的路由 如何健康检查">
+<meta name="keywords" content="Spring Data Elasticsearch (一)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 面向对象的五大原则">
-<meta property="og:url" content="http://yoursite.com/2018/12/05/Java-面向对象的五大原则/index.html">
+<meta property="og:title" content="Spring Data Elasticsearch (一)">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-一/index.html">
 <meta property="og:site_name" content="李荣鹏的博客">
-<meta property="og:description" content="目录   面向对象五大原则： 单一职责原则（Single-Resposibility Principle） 开放封闭原则（Open-Closed principle） 里氏替换原则（Liskov-Substituion Principle） 依赖倒置原则（Dependecy-Inversion Principle） ISP 接口隔离原则(Interface-Segregation Principl">
+<meta property="og:description" content="目录   Elasticsearch 基本术语 文档（Document）、索引（Index）、类型（Type）文档三要素 文档（Document） 索引（Index） 类型（Type）   集群（Cluster）、节点（Node）、分片（Shard）分布式三要素 集群（Cluster） 节点（Node） 分片（Shard）     Elasticsearch 工作原理 文档存储的路由 如何健康检查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T02:59:16.644Z">
+<meta property="og:updated_time" content="2018-12-10T02:51:21.912Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 面向对象的五大原则">
-<meta name="twitter:description" content="目录   面向对象五大原则： 单一职责原则（Single-Resposibility Principle） 开放封闭原则（Open-Closed principle） 里氏替换原则（Liskov-Substituion Principle） 依赖倒置原则（Dependecy-Inversion Principle） ISP 接口隔离原则(Interface-Segregation Principl">
+<meta name="twitter:title" content="Spring Data Elasticsearch (一)">
+<meta name="twitter:description" content="目录   Elasticsearch 基本术语 文档（Document）、索引（Index）、类型（Type）文档三要素 文档（Document） 索引（Index） 类型（Type）   集群（Cluster）、节点（Node）、分片（Shard）分布式三要素 集群（Cluster） 节点（Node） 分片（Shard）     Elasticsearch 工作原理 文档存储的路由 如何健康检查">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/05/Java-面向对象的五大原则/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-一/">
 
 
 
 
 
-  <title>Java 面向对象的五大原则 | 李荣鹏的博客</title>
+  <title>Spring Data Elasticsearch (一) | 李荣鹏的博客</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/Java-面向对象的五大原则/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-一/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李荣鹏">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 面向对象的五大原则</h1>
+          <h1 class="post-title" itemprop="name headline">Spring Data Elasticsearch (一)</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T10:56:21+08:00">
-                2018-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T10:38:48+08:00">
+                2018-12-10
               </time>
             
 
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-基本功/" itemprop="url" rel="index">
-                    <span itemprop="name">Java 基本功</span>
+                  <a href="/categories/Spring-Data-Elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Data Elasticsearch</span>
                   </a>
                 </span>
 
@@ -357,21 +357,53 @@
         <p>目录</p>
 <!-- toc -->
 <ul>
-<li><a href="#面向对象五大原则">面向对象五大原则：</a><ul>
-<li><a href="#单一职责原则single-resposibility-principle">单一职责原则（Single-Resposibility Principle）</a></li>
-<li><a href="#开放封闭原则open-closed-principle">开放封闭原则（Open-Closed principle）</a></li>
-<li><a href="#里氏替换原则liskov-substituion-principle">里氏替换原则（Liskov-Substituion Principle）</a></li>
-<li><a href="#依赖倒置原则dependecy-inversion-principle">依赖倒置原则（Dependecy-Inversion Principle）</a></li>
-<li><a href="#isp-接口隔离原则interface-segregation-principle">ISP 接口隔离原则(Interface-Segregation Principle)</a></li>
+<li><a href="#elasticsearch-基本术语">Elasticsearch 基本术语</a><ul>
+<li><a href="#文档document-索引index-类型type文档三要素">文档（Document）、索引（Index）、类型（Type）文档三要素</a><ul>
+<li><a href="#文档document">文档（Document）</a></li>
+<li><a href="#索引index">索引（Index）</a></li>
+<li><a href="#类型type">类型（Type）</a></li>
+</ul>
+</li>
+<li><a href="#集群cluster-节点node-分片shard分布式三要素">集群（Cluster）、节点（Node）、分片（Shard）分布式三要素</a><ul>
+<li><a href="#集群cluster">集群（Cluster）</a></li>
+<li><a href="#节点node">节点（Node）</a></li>
+<li><a href="#分片shard">分片（Shard）</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li><a href="#elasticsearch-工作原理">Elasticsearch 工作原理</a><ul>
+<li><a href="#文档存储的路由">文档存储的路由</a></li>
+<li><a href="#如何健康检查">如何健康检查</a></li>
+<li><a href="#如何水平扩容">如何水平扩容</a></li>
+</ul>
+</li>
+<li><a href="#小结">小结</a></li>
+</ul>
 <!-- tocstop -->
-<h1><span id="面向对象五大原则">面向对象五大原则：</span></h1><h2><span id="单一职责原则single-resposibility-principle">单一职责原则（Single-Resposibility Principle）</span></h2><p>一个类应该仅有一个引起它变化的原因<br>职员类例子： 比如在职员类里，将工程师、销售人员、销售经理这些情况都放在职员类里考虑，其结果将会非常混乱，在这个假设下，职员类里的每个方法都要ifelse判断是哪种情况，从类结构上来说将会十分臃肿，并且上述三种的职员类型，不论哪一种发生需求变化，都会改变职员类！这个是大家所不愿意看到的！</p>
-<h2><span id="开放封闭原则open-closed-principle">开放封闭原则（Open-Closed principle）</span></h2><p>对扩展是开放的，对更改是封闭的！<br>变化来临时，如果不必改动软件实体裁的源代码，就能扩充它的行为，那么这个软件实体设计就是满足开放封闭原则的。如果说我们预测到某种变化，或者某种变化发生了，我们应当创建抽象类来隔离以后发生的同类变化。</p>
-<h2><span id="里氏替换原则liskov-substituion-principle">里氏替换原则（Liskov-Substituion Principle）</span></h2><p>子类可以替换父类并且出现在父类能够出现的任何地方,贯彻GOF倡导的面向接口编程<br>在这个原则中父类应尽可能使用接口或者抽象类来实现！<br>子类通过实现了父类接口，能够替父类的使用地方！<br>通过这个原则，我们客户端在使用父类接口的时候，通过子类实现！<br>意思就是说我们依赖父类接口，在客户端声明一个父类接口，通过其子类来实现<br>这个时候就要求子类必须能够替换父类所出现的任何地方，这样做的好处就是，在根据新要求扩展父类接口的新子类的时候而不影响当前客户端的使用！</p>
-<h2><span id="依赖倒置原则dependecy-inversion-principle">依赖倒置原则（Dependecy-Inversion Principle）</span></h2><p>传统的结构化编程中，最上层的模块通常都要依赖下面的子模块来实现，也称为高层依赖低层！<br>所以DIP原则就是要逆转这种依赖关系，让高层模块不要依赖低层模块，所以称之为依赖倒置原则！</p>
-<h2><span id="isp-接口隔离原则interface-segregation-principle">ISP 接口隔离原则(Interface-Segregation Principle)</span></h2><p>使用多个专门的接口比使用单个接口要好的多！<br>这个我有体会，在我实际编程中，为了减少接口的定义，将许多类似的方法都放在一个接口中，最后发现，维护和实现接口的时候花了太多精力，而接口所定义的操作相当于对客户端的一种承诺，这种承诺当然是越少越好，越精练越好，过多的承诺带来的就是你的大量精力和时间去维护！</p>
+<h1><span id="elasticsearch-基本术语">Elasticsearch 基本术语</span></h1><h2><span id="文档document-索引index-类型type文档三要素">文档（Document）、索引（Index）、类型（Type）文档三要素</span></h2><h3><span id="文档document">文档（Document）</span></h3><p>文档，在面向对象观念就是一个对象。在 ES 里面，是一个大 JSON 对象，是指定了唯一 ID 的最底层或者根对象。文档的位置由 _index、_type 和 _id 唯一标识。</p>
+<h3><span id="索引index">索引（Index）</span></h3><p>索引，用于区分文档成组，即分到一组的文档集合。索引，用于存储文档和使文档可被搜索。比如项目存索引 project 里面，交易存索引 sales 等。</p>
+<h3><span id="类型type">类型（Type）</span></h3><p>类型，用于区分索引中的文档，即在索引中对数据逻辑分区。比如索引 project 的项目数据，根据项目类型 ui 项目、插画项目等进行区分。</p>
+<p><strong>和关系型数据库 MySQL 做个类比：</strong><br>Document 类似于 Record<br>Type 类似于 Table<br>Index 类似于 Database</p>
+<h2><span id="集群cluster-节点node-分片shard分布式三要素">集群（Cluster）、节点（Node）、分片（Shard）分布式三要素</span></h2><h3><span id="集群cluster">集群（Cluster）</span></h3><p>服务器集群大家都知道，这里 ES 也是类似的。多个 ElasticSearch 运行实例（节点）组合的组合体是 ElasticSearch 集群。<br>ElasticSearch 是天然的分布式，通过水平扩容为集群添加更多节点。<br>集群是去中心化的，有一个主节点（Master）。主节点是动态选举，因此不会出现单点故障。</p>
+<h3><span id="节点node">节点（Node）</span></h3><p>一个 ElasticSearch 运行实例就是节点。顺着集群来，任何节点都可以被选举成为主节点。主节点负责集群内所以变更，比如索引的增加、删除等。所以集群不会因为主节点流量的增大成为瓶颈。因为任何节点都会成为主节点。</p>
+<h3><span id="分片shard">分片（Shard）</span></h3><p>分片，是 ES 节点中最小的工作单元。分片仅仅保存全部数据的一部分，分片的集合是 ES 的索引。分片包括主分片和副分片，主分片是副分片的拷贝。主分片和副分片地工作基本没有大的区别。<br>在索引中全文搜索，然后会查询到每个分片，将每个分配的结果进行全局地收集处理，并返回。</p>
+<h1><span id="elasticsearch-工作原理">Elasticsearch 工作原理</span></h1><h2><span id="文档存储的路由">文档存储的路由</span></h2><p>当索引到一个文档（如：报价系统），具体的文档数据（如：报价数据）会存储到一个分片。具体文档数据会被切分，并分别存储在分片 1 或者 分片 2 … 那么如何确定存在哪个分片呢?</p>
+<p>存储路由过程由下面地公式决定：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shard = hash(routing) % number_of_primary_shards</span><br></pre></td></tr></table></figure></p>
+<p>routing 是可变值，支持自定义，默认文档 _id。<br>hash 函数生成数字，经过取余算法得到余数，那么这个余数就是分片的位置。<br>这是不是有点负载均衡的类似。</p>
+<h2><span id="如何健康检查">如何健康检查</span></h2><p>集群名，集群的健康状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">GET http://127.0.0.1:9200/_cluster/stats</span><br><span class="line">&#123;</span><br><span class="line">&quot;cluster_name&quot;: &quot;elasticsearch&quot;,</span><br><span class="line">&quot;status&quot;: &quot;green&quot;,</span><br><span class="line">&quot;timed_out&quot;: false,</span><br><span class="line">&quot;number_of_nodes&quot;: 1,</span><br><span class="line">&quot;number_of_data_nodes&quot;: 1,</span><br><span class="line">&quot;active_primary_shards&quot;: 0,</span><br><span class="line">&quot;active_shards&quot;: 0,</span><br><span class="line">&quot;relocating_shards&quot;: 0,</span><br><span class="line">&quot;initializing_shards&quot;: 0,</span><br><span class="line">&quot;unassigned_shards&quot;: 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>status 字段是需要我们关心的。状态可能是下列三个值之一：</p>
+<ul>
+<li><p>green<br>所有的主分片和副本分片都已分配。你的集群是 100% 可用的。</p>
+</li>
+<li><p>yellow<br>所有的主分片已经分片了，但至少还有一个副本是缺失的。不会有数据丢失，所以搜索结果依然是完整的。高可用会弱化把 yellow 想象成一个需要及时调查的警告。</p>
+</li>
+<li><p>red<br>至少一个主分片（以及它的全部副本）都在缺失中。这意味着你在缺少数据：搜索只能返回部分数据，而分配到这个分片上的写入请求会返回一个异常。</p>
+</li>
+</ul>
+<p>active_primary_shards 集群中的主分片数量<br>active_shards 所有分片的汇总值<br>relocating_shards 显示当前正在从一个节点迁往其他节点的分片的数量。通常来说应该是 0，不过在 Elasticsearch 发现集群不太均衡时，该值会上涨。比如说：添加了一个新节点，或者下线了一个节点。<br>initializing_shards 刚刚创建的分片的个数。<br>unassigned_shards 已经在集群状态中存在的分片。</p>
+<h2><span id="如何水平扩容">如何水平扩容</span></h2><p>主分片在索引创建已经确定。读操作可以同时被主分片和副分片处理。因此，更多的分片，会拥有更高的吞吐量。自然，需要增加更多的硬件资源支持吞吐量。说明，这里无法提高性能，因为每个分片获得的资源会变少。动态调整副本分片数，按需伸缩集群，比如把副本数默认值为 1 增加到 2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PUT /blogs/_settings</span><br><span class="line">&#123;</span><br><span class="line">&quot;number_of_replicas&quot; : 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1><span id="小结">小结</span></h1><p>官方《Elasticsearch: 权威指南》<br><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html</a></p>
 
       
     </div>
@@ -389,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java-面向对象的五大原则/" rel="tag"># Java 面向对象的五大原则</a>
+            <a href="/tags/Spring-Data-Elasticsearch-一/" rel="tag"># Spring Data Elasticsearch (一)</a>
           
         </div>
       
@@ -402,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/Java-面向对象的特征/" rel="next" title="Java 面向对象的特征">
-                <i class="fa fa-chevron-left"></i> Java 面向对象的特征
+              <a href="/2018/12/07/MySql-双机异地热备/" rel="next" title="MySql 双机异地热备">
+                <i class="fa fa-chevron-left"></i> MySql 双机异地热备
               </a>
             
           </div>
@@ -412,8 +444,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/05/Java中final、finally、finalize的区别与用法/" rel="prev" title="Java中final、finally、finalize的区别与用法">
-                Java中final、finally、finalize的区别与用法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/10/Spring-Data-Elasticsearch-二/" rel="prev" title="Spring Data Elasticsearch (二)">
+                Spring Data Elasticsearch (二) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

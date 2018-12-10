@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java 面向对象的五大原则,">
+  <meta name="keywords" content="Spring Data Elasticsearch (二),">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="目录   面向对象五大原则： 单一职责原则（Single-Resposibility Principle） 开放封闭原则（Open-Closed principle） 里氏替换原则（Liskov-Substituion Principle） 依赖倒置原则（Dependecy-Inversion Principle） ISP 接口隔离原则(Interface-Segregation Principl">
-<meta name="keywords" content="Java 面向对象的五大原则">
+<meta name="description" content="目录   spring-data-elasticsearch 是什么？ Spring Data Spring Data Elasticsearch   spring-data-elasticsearch 快速入门 pom.xml 依赖 ElasticsearchRepository ElasticsearchTemplate 使用案例   spring-data-elasticsearch 和 e">
+<meta name="keywords" content="Spring Data Elasticsearch (二)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 面向对象的五大原则">
-<meta property="og:url" content="http://yoursite.com/2018/12/05/Java-面向对象的五大原则/index.html">
+<meta property="og:title" content="Spring Data Elasticsearch (二)">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-二/index.html">
 <meta property="og:site_name" content="李荣鹏的博客">
-<meta property="og:description" content="目录   面向对象五大原则： 单一职责原则（Single-Resposibility Principle） 开放封闭原则（Open-Closed principle） 里氏替换原则（Liskov-Substituion Principle） 依赖倒置原则（Dependecy-Inversion Principle） ISP 接口隔离原则(Interface-Segregation Principl">
+<meta property="og:description" content="目录   spring-data-elasticsearch 是什么？ Spring Data Spring Data Elasticsearch   spring-data-elasticsearch 快速入门 pom.xml 依赖 ElasticsearchRepository ElasticsearchTemplate 使用案例   spring-data-elasticsearch 和 e">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T02:59:16.644Z">
+<meta property="og:updated_time" content="2018-12-10T05:20:18.163Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 面向对象的五大原则">
-<meta name="twitter:description" content="目录   面向对象五大原则： 单一职责原则（Single-Resposibility Principle） 开放封闭原则（Open-Closed principle） 里氏替换原则（Liskov-Substituion Principle） 依赖倒置原则（Dependecy-Inversion Principle） ISP 接口隔离原则(Interface-Segregation Principl">
+<meta name="twitter:title" content="Spring Data Elasticsearch (二)">
+<meta name="twitter:description" content="目录   spring-data-elasticsearch 是什么？ Spring Data Spring Data Elasticsearch   spring-data-elasticsearch 快速入门 pom.xml 依赖 ElasticsearchRepository ElasticsearchTemplate 使用案例   spring-data-elasticsearch 和 e">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/05/Java-面向对象的五大原则/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-二/">
 
 
 
 
 
-  <title>Java 面向对象的五大原则 | 李荣鹏的博客</title>
+  <title>Spring Data Elasticsearch (二) | 李荣鹏的博客</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/Java-面向对象的五大原则/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-二/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李荣鹏">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 面向对象的五大原则</h1>
+          <h1 class="post-title" itemprop="name headline">Spring Data Elasticsearch (二)</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T10:56:21+08:00">
-                2018-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T10:52:58+08:00">
+                2018-12-10
               </time>
             
 
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-基本功/" itemprop="url" rel="index">
-                    <span itemprop="name">Java 基本功</span>
+                  <a href="/categories/Spring-Data-Elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Data Elasticsearch</span>
                   </a>
                 </span>
 
@@ -357,21 +357,31 @@
         <p>目录</p>
 <!-- toc -->
 <ul>
-<li><a href="#面向对象五大原则">面向对象五大原则：</a><ul>
-<li><a href="#单一职责原则single-resposibility-principle">单一职责原则（Single-Resposibility Principle）</a></li>
-<li><a href="#开放封闭原则open-closed-principle">开放封闭原则（Open-Closed principle）</a></li>
-<li><a href="#里氏替换原则liskov-substituion-principle">里氏替换原则（Liskov-Substituion Principle）</a></li>
-<li><a href="#依赖倒置原则dependecy-inversion-principle">依赖倒置原则（Dependecy-Inversion Principle）</a></li>
-<li><a href="#isp-接口隔离原则interface-segregation-principle">ISP 接口隔离原则(Interface-Segregation Principle)</a></li>
+<li><a href="#spring-data-elasticsearch-是什么">spring-data-elasticsearch 是什么？</a><ul>
+<li><a href="#spring-data">Spring Data</a></li>
+<li><a href="#spring-data-elasticsearch">Spring Data Elasticsearch</a></li>
 </ul>
 </li>
+<li><a href="#spring-data-elasticsearch-快速入门">spring-data-elasticsearch 快速入门</a><ul>
+<li><a href="#pomxml-依赖">pom.xml 依赖</a></li>
+<li><a href="#elasticsearchrepository">ElasticsearchRepository</a></li>
+<li><a href="#elasticsearchtemplate">ElasticsearchTemplate</a></li>
+<li><a href="#使用案例">使用案例</a></li>
+</ul>
+</li>
+<li><a href="#spring-data-elasticsearch-和-elasticsearch-版本">spring-data-elasticsearch 和 elasticsearch 版本</a></li>
+<li><a href="#小结">小结</a></li>
 </ul>
 <!-- tocstop -->
-<h1><span id="面向对象五大原则">面向对象五大原则：</span></h1><h2><span id="单一职责原则single-resposibility-principle">单一职责原则（Single-Resposibility Principle）</span></h2><p>一个类应该仅有一个引起它变化的原因<br>职员类例子： 比如在职员类里，将工程师、销售人员、销售经理这些情况都放在职员类里考虑，其结果将会非常混乱，在这个假设下，职员类里的每个方法都要ifelse判断是哪种情况，从类结构上来说将会十分臃肿，并且上述三种的职员类型，不论哪一种发生需求变化，都会改变职员类！这个是大家所不愿意看到的！</p>
-<h2><span id="开放封闭原则open-closed-principle">开放封闭原则（Open-Closed principle）</span></h2><p>对扩展是开放的，对更改是封闭的！<br>变化来临时，如果不必改动软件实体裁的源代码，就能扩充它的行为，那么这个软件实体设计就是满足开放封闭原则的。如果说我们预测到某种变化，或者某种变化发生了，我们应当创建抽象类来隔离以后发生的同类变化。</p>
-<h2><span id="里氏替换原则liskov-substituion-principle">里氏替换原则（Liskov-Substituion Principle）</span></h2><p>子类可以替换父类并且出现在父类能够出现的任何地方,贯彻GOF倡导的面向接口编程<br>在这个原则中父类应尽可能使用接口或者抽象类来实现！<br>子类通过实现了父类接口，能够替父类的使用地方！<br>通过这个原则，我们客户端在使用父类接口的时候，通过子类实现！<br>意思就是说我们依赖父类接口，在客户端声明一个父类接口，通过其子类来实现<br>这个时候就要求子类必须能够替换父类所出现的任何地方，这样做的好处就是，在根据新要求扩展父类接口的新子类的时候而不影响当前客户端的使用！</p>
-<h2><span id="依赖倒置原则dependecy-inversion-principle">依赖倒置原则（Dependecy-Inversion Principle）</span></h2><p>传统的结构化编程中，最上层的模块通常都要依赖下面的子模块来实现，也称为高层依赖低层！<br>所以DIP原则就是要逆转这种依赖关系，让高层模块不要依赖低层模块，所以称之为依赖倒置原则！</p>
-<h2><span id="isp-接口隔离原则interface-segregation-principle">ISP 接口隔离原则(Interface-Segregation Principle)</span></h2><p>使用多个专门的接口比使用单个接口要好的多！<br>这个我有体会，在我实际编程中，为了减少接口的定义，将许多类似的方法都放在一个接口中，最后发现，维护和实现接口的时候花了太多精力，而接口所定义的操作相当于对客户端的一种承诺，这种承诺当然是越少越好，越精练越好，过多的承诺带来的就是你的大量精力和时间去维护！</p>
+<h1><span id="spring-data-elasticsearch-是什么">spring-data-elasticsearch 是什么？</span></h1><h2><span id="spring-data">Spring Data</span></h2><p>要了解 spring-data-elasticsearch 是什么，首先了解什么是 Spring Data。<br>Spring Data 基于 Spring 为数据访问提供一种相似且一致性的编程模型，并保存底层数据存储的。</p>
+<h2><span id="spring-data-elasticsearch">Spring Data Elasticsearch</span></h2><p>spring-data-elasticsearch 是 Spring Data 的 Community modules 之一，是 Spring Data 对 Elasticsearch 引擎的实现。<br>Elasticsearch 默认提供轻量级的 HTTP Restful 接口形式的访问。相对来说，使用 HTTP Client 调用也很简单。但 spring-data-elasticsearch 可以更快的支持构建在 Spring 应用上，比如在 application.properties 配置 ES 节点信息和 spring-boot-starter-data-elasticsearch 依赖，直接在 Spring Boot 应用上使用。</p>
+<h1><span id="spring-data-elasticsearch-快速入门">spring-data-elasticsearch 快速入门</span></h1><h2><span id="pomxml-依赖">pom.xml 依赖</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-data-elasticsearch&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;x.y.z.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="elasticsearchrepository">ElasticsearchRepository</span></h2><p>ES 通用的存储接口的一种默认实现。Spring 根据接口定义的方法名，具体执行对应的数据存储实现。<br>ElasticsearchRepository 继承 ElasticsearchCrudRepository ，ElasticsearchCrudRepository 继承 PagingAndSortingRepository。所以一般 CRUD 带分页已经支持。</p>
+<h2><span id="elasticsearchtemplate">ElasticsearchTemplate</span></h2><p>ES 数据操作的中心支持类。和 JdbcTemplate 一样，几乎所有操作都可以使用 ElasticsearchTemplate 来完成。<br>ElasticsearchTemplate 实现了 ElasticsearchOperations 和 ApplicationContextAware 接口。ElasticsearchOperations 接口提供了 ES 相关的操作，并将 ElasticsearchTemplate 加入到 Spring 上下文。</p>
+<h2><span id="使用案例">使用案例</span></h2><p>官方案例，详细介绍了 Book ES 对象的接口实现。<br>可以看出，book 拥有 name 和 price 两个属性。下面支持  name 和 price 列表 ES 查询，分页查询，范围查询等。还有可以利用注解实现 DSL 操作。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BookRepository</span> <span class="keyword">extends</span> <span class="title">Repository</span>&lt;<span class="title">Book</span>, <span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">List&lt;Book&gt; <span class="title">findByNameAndPrice</span><span class="params">(String name, Integer price)</span></span>;</span><br><span class="line">    <span class="function">List&lt;Book&gt; <span class="title">findByNameOrPrice</span><span class="params">(String name, Integer price)</span></span>;</span><br><span class="line">    <span class="function">Page&lt;Book&gt; <span class="title">findByName</span><span class="params">(String name,Pageable page)</span></span>;</span><br><span class="line">    <span class="function">Page&lt;Book&gt; <span class="title">findByNameNot</span><span class="params">(String name,Pageable page)</span></span>;</span><br><span class="line">    <span class="function">Page&lt;Book&gt; <span class="title">findByPriceBetween</span><span class="params">(<span class="keyword">int</span> price,Pageable page)</span></span>;</span><br><span class="line">    <span class="function">Page&lt;Book&gt; <span class="title">findByNameLike</span><span class="params">(String name,Pageable page)</span></span>;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"&#123;\"bool\" : &#123;\"must\" : &#123;\"term\" : &#123;\"message\" : \"?0\"&#125;&#125;&#125;&#125;"</span>)</span><br><span class="line">    <span class="function">Page&lt;Book&gt; <span class="title">findByMessage</span><span class="params">(String message, Pageable pageable)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1><span id="spring-data-elasticsearch-和-elasticsearch-版本">spring-data-elasticsearch 和 elasticsearch 版本</span></h1><p>SpringBoot 1.5+ 目前仅支持 ElasticSearch 2.3.2，所以如果想要使用最新的 ES。可以通过默认的轻量级的 HTTP 去调用实现。其版本对应如下:</p>
+<p>spring data elasticsearch    elasticsearch<br>3.0.0.BUILD-SNAPSHOT    5.4.0<br>2.0.4.RELEASE                    2.4.0<br>2.0.0.RELEASE                    2.2.0<br>1.4.0.M1                               1.7.3<br>1.3.0.RELEASE                    1.5.2<br>1.2.0.RELEASE                    1.4.4<br>1.1.0.RELEASE                    1.3.2<br>1.0.0.RELEASE                    1.1.1</p>
+<h1><span id="小结">小结</span></h1><p><strong>官方文档</strong><br><a href="http://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/" target="_blank" rel="noopener">http://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/</a></p>
 
       
     </div>
@@ -389,7 +399,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java-面向对象的五大原则/" rel="tag"># Java 面向对象的五大原则</a>
+            <a href="/tags/Spring-Data-Elasticsearch-二/" rel="tag"># Spring Data Elasticsearch (二)</a>
           
         </div>
       
@@ -402,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/Java-面向对象的特征/" rel="next" title="Java 面向对象的特征">
-                <i class="fa fa-chevron-left"></i> Java 面向对象的特征
+              <a href="/2018/12/10/Spring-Data-Elasticsearch-一/" rel="next" title="Spring Data Elasticsearch (一)">
+                <i class="fa fa-chevron-left"></i> Spring Data Elasticsearch (一)
               </a>
             
           </div>
@@ -411,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/05/Java中final、finally、finalize的区别与用法/" rel="prev" title="Java中final、finally、finalize的区别与用法">
-                Java中final、finally、finalize的区别与用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
