@@ -87,10 +87,13 @@
 <meta property="og:site_name" content="李荣鹏的博客">
 <meta property="og:description" content="目录   Elasticsearch 基本术语 文档（Document）、索引（Index）、类型（Type）文档三要素 文档（Document） 索引（Index） 类型（Type）   集群（Cluster）、节点（Node）、分片（Shard）分布式三要素 集群（Cluster） 节点（Node） 分片（Shard）     Elasticsearch 工作原理 文档存储的路由 如何健康检查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-10T02:51:21.912Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-一/01.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-一/02.png">
+<meta property="og:updated_time" content="2018-12-11T01:39:20.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Data Elasticsearch (一)">
 <meta name="twitter:description" content="目录   Elasticsearch 基本术语 文档（Document）、索引（Index）、类型（Type）文档三要素 文档（Document） 索引（Index） 类型（Type）   集群（Cluster）、节点（Node）、分片（Shard）分布式三要素 集群（Cluster） 节点（Node） 分片（Shard）     Elasticsearch 工作原理 文档存储的路由 如何健康检查">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/10/Spring-Data-Elasticsearch-一/01.png">
 
 
 
@@ -386,7 +389,8 @@
 <h3><span id="类型type">类型（Type）</span></h3><p>类型，用于区分索引中的文档，即在索引中对数据逻辑分区。比如索引 project 的项目数据，根据项目类型 ui 项目、插画项目等进行区分。</p>
 <p><strong>和关系型数据库 MySQL 做个类比：</strong><br>Document 类似于 Record<br>Type 类似于 Table<br>Index 类似于 Database</p>
 <h2><span id="集群cluster-节点node-分片shard分布式三要素">集群（Cluster）、节点（Node）、分片（Shard）分布式三要素</span></h2><h3><span id="集群cluster">集群（Cluster）</span></h3><p>服务器集群大家都知道，这里 ES 也是类似的。多个 ElasticSearch 运行实例（节点）组合的组合体是 ElasticSearch 集群。<br>ElasticSearch 是天然的分布式，通过水平扩容为集群添加更多节点。<br>集群是去中心化的，有一个主节点（Master）。主节点是动态选举，因此不会出现单点故障。</p>
-<h3><span id="节点node">节点（Node）</span></h3><p>一个 ElasticSearch 运行实例就是节点。顺着集群来，任何节点都可以被选举成为主节点。主节点负责集群内所以变更，比如索引的增加、删除等。所以集群不会因为主节点流量的增大成为瓶颈。因为任何节点都会成为主节点。</p>
+<h3><span id="节点node">节点（Node）</span></h3><p>一个 ElasticSearch 运行实例就是节点。顺着集群来，任何节点都可以被选举成为主节点。主节点负责集群内所以变更，比如索引的增加、删除等。所以集群不会因为主节点流量的增大成为瓶颈。因为任何节点都会成为主节点。<br>下面有 3 个节点，第 1 个节点有：2 个主分片和 1 个副分片。如图：<br><img src="01.png" alt=""></p>
+<p>只有一个节点的 ElasticSearch 服务会存在瓶颈。如图：<br><img src="02.png" alt=""></p>
 <h3><span id="分片shard">分片（Shard）</span></h3><p>分片，是 ES 节点中最小的工作单元。分片仅仅保存全部数据的一部分，分片的集合是 ES 的索引。分片包括主分片和副分片，主分片是副分片的拷贝。主分片和副分片地工作基本没有大的区别。<br>在索引中全文搜索，然后会查询到每个分片，将每个分配的结果进行全局地收集处理，并返回。</p>
 <h1><span id="elasticsearch-工作原理">Elasticsearch 工作原理</span></h1><h2><span id="文档存储的路由">文档存储的路由</span></h2><p>当索引到一个文档（如：报价系统），具体的文档数据（如：报价数据）会存储到一个分片。具体文档数据会被切分，并分别存储在分片 1 或者 分片 2 … 那么如何确定存在哪个分片呢?</p>
 <p>存储路由过程由下面地公式决定：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shard = hash(routing) % number_of_primary_shards</span><br></pre></td></tr></table></figure></p>
